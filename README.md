@@ -108,5 +108,13 @@ Alogn with urls.py in your app edits views.py of your app to render the webpages
 
     python manage.py createsuperuser
 
+# Save changes to django server
+
+    python3 manage.py migrate
+    
+    #to check any unsaved changes 
+    
+    python3 manage.py makemigrations
+
 
 
