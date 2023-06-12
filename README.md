@@ -104,6 +104,9 @@ Alogn with urls.py in your app edits views.py of your app to render the webpages
         return render(request, "contact.html")
     
       
+# To create admin or superuser for your django project
+
+    python manage.py createsuperuser
 
 
 
