@@ -1,0 +1,218 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Comatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Apne Brands</title>
+    <script
+      src="https://kit.fontawesome.com/ac8df84308.js"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/style.css' %}"
+    />
+  </head>
+  <body>
+    <section id="header">
+      <h1 class="logo">
+        <span><h1 class="apne">A</h1></span>pne<span
+          ><h1 class="bharat">B</h1>
+          rand</span
+        >
+      </h1>
+      <div class="search-item-2">
+        <input type="text" placeholder="Search Your Product" />
+        <button class="normal">
+          <i class="fa-solid fa-magnifying-glass fa-xl"></i>
+        </button>
+      </div>
+      <div>
+        <ul id="navbar">
+          <li><a class="active" href="index.html"></a></li>
+          <li><a href="shop.html">Shop</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="about.html">About</a></li>
+          <li id="lg-bag">
+            <a href="cart.html"
+              ><i class="fa-sharp fa-solid fa-cart-shopping fa-lg"></i
+            ></a>
+          </li>
+          <li id="me-user">
+            <a href="user.html"><i class="fa-solid fa-user fa-lg"></i></a>
+          </li>
+          <li id="to-more">
+            <a href="more.html"
+              ><i class="fa-sharp fa-solid fa-bars fa-lg"></i
+            ></a>
+          </li>
+        </ul>
+      </div>
+      <div id="mobile">
+        <a href="cart.html"><i class="far fa-shopping-bag"></i></a>
+        <i id="bar" class="fas fa-outdent"></i>
+      </div>
+    </section>
+
+    <section id="contact-header">
+      <h2>#Let's_Talk</h2>
+
+      <p>Leave A Massage, We love to hear from you!</p>
+    </section>
+
+    <section id="contact-details" class="section-p1">
+      <div class="details">
+        <span>GET IN TOUCH</span>
+        <h2>Visit one of our agency locations or contact us today</h2>
+        <h3>Head Office</h3>
+        <div>
+          <li>
+            <i class="fal fa-map"></i>
+            <p>Gat No:53 Plot No:79-B Shiv Colony Jalgaon Maharashtra India</p>
+          </li>
+          <li>
+            <i class="fal fa-envelope"></i>
+            <p>contact@example.com</p>
+          </li>
+          <li>
+            <i class="fal fa-phone-alt"></i>
+            <p>contact@abc.com</p>
+          </li>
+          <li>
+            <i class="fal fa-clock"></i>
+            <p>Monday to Saturday: 9.00am to 16.00pm</p>
+          </li>
+        </div>
+      </div>
+
+      <div class="map">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3724.818353419861!2d75.55137717512837!3d20.999917280642272!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bd90fb42507aeb5%3A0xa936a554c882fc21!2sKhandesh%20College%20Education%20Society&#39;
+            s%20Moolji%20Jaitha%20College!5e0!3m2!1sen!2sin!4v1685732637041!5m2!1sen!2sin"
+          width="600"
+          height="450"
+          style="border: 0"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </div>
+    </section>
+
+    <section id="form-details">
+      <form action="">
+        <span>LEAV A MASSAGE</span>
+        <h2>We love to hear from you</h2>
+        <input type="text" placeholder="Your Name" />
+        <input type="text" placeholder="E-mail" />
+        <input type="text" placeholder="Subject" />
+        <textarea
+          name=""
+          id=""
+          cols="30"
+          rows="10"
+          placeholder="Your Massage"
+        ></textarea>
+        <button class="normal">Submit</button>
+      </form>
+
+      <div class="people">
+        <div>
+          <img src="" alt="" />
+          <p>
+            <span>Kumar K </span>Senior Marketing Manager <br />Phone: +91
+            0000000000 <br />E-mail: contact@abc.com
+          </p>
+        </div>
+        <div>
+          <img src="" alt="" />
+          <p>
+            <span>Kumar K </span>Senior Marketing Manager <br />Phone: +91
+            0000000000 <br />E-mail: contact@abc.com
+          </p>
+        </div>
+        <div>
+          <img src="" alt="" />
+          <p>
+            <span>Kumar K </span>Senior Marketing Manager <br />Phone: +91
+            0000000000 <br />E-mail: contact@abc.com
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="newsletter" class="section-p1 section-m1">
+      <div class="newstext">
+        <h4>Sign Up For Newsletters</h4>
+        <p>
+          Get E-mail updates about our latest shop &
+          <span>special offers.</span>
+        </p>
+      </div>
+      <div class="form">
+        <input type="text" placeholder="Your E-mail address" />
+        <button class="normal">Sign Up</button>
+      </div>
+    </section>
+
+    <footer class="section-p1">
+      <div class="col">
+        <img class="logo" src="pic/mylogo.png" alt="" />
+        <h4>Contact</h4>
+        <p>
+          <strong>Address:</strong> Gat: Ploat: Shiv Colony Jalgaon Maharashtra
+          India
+        </p>
+        <p><strong>Phone:</strong> (+91) 8080491934 / (+91) 7709977502</p>
+        <p><strong>Hours:</strong> 10:00 - 18:00, Mon - Sat</p>
+        <div class="follow">
+          <h4>Follow Us</h4>
+          <div class="icon">
+            <i class="fa-brands fa-facebook" style="color: #0257e8"></i>
+            <i class="fa-brands fa-instagram" style="color: #fb096a"></i>
+            <i class="fa-brands fa-linkedin" style="color: #025af2"></i>
+            <i class="fa-brands fa-youtube" style="color: #f52500"></i>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <h4>About</h4>
+        <a href="#">About us</a>
+        <a href="#">Delivery Information</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms & Conditions</a>
+        <a href="#">Contact us</a>
+      </div>
+
+      <div class="col">
+        <h4>My Account</h4>
+        <a href="#">Sign In</a>
+        <a href="#">View Cart</a>
+        <a href="#">My Wishlist</a>
+        <a href="#">Tracl My Order</a>
+        <a href="#">Help</a>
+      </div>
+
+      <div class="col install">
+        <h4>Install App</h4>
+        <p>From App Store or Google Play</p>
+        <div class="row">
+          <img src="pic/Footer/appstore.png" alt="" />
+          <img src="pic/Footer/googleplay.png" alt="" />
+        </div>
+        <p>Secured Payment Gateways</p>
+        <img src="pic/Footer/pay.png" alt="" />
+      </div>
+
+      <div class="copyright">
+        <p>© 2023 Tech etc - HTML CSS Ecommerce Template</p>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

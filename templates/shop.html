@@ -1,0 +1,395 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Comatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Apne Brands</title>
+    <script
+      src="https://kit.fontawesome.com/ac8df84308.js"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/style.css' %}"
+    />
+  </head>
+  <body>
+    <section id="header">
+      <h1 class="logo">
+        <span><h1 class="apne">A</h1></span>pne<span
+          ><h1 class="bharat">B</h1>
+          rand</span
+        >
+      </h1>
+      <div class="search-item-2">
+        <input type="text" placeholder="Search Your Product" />
+        <button class="normal">
+          <i class="fa-solid fa-magnifying-glass fa-xl"></i>
+        </button>
+      </div>
+      <div>
+        <ul id="navbar">
+          <li><a class="active" href="index.html"></a></li>
+          <li><a href="shop.html">Shop</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="about.html">About</a></li>
+          <li id="lg-bag">
+            <a href="cart.html"
+              ><i class="fa-sharp fa-solid fa-cart-shopping fa-lg"></i
+            ></a>
+          </li>
+          <li id="me-user">
+            <a href="user.html"><i class="fa-solid fa-user fa-lg"></i></a>
+          </li>
+          <li id="to-more">
+            <a href="more.html"
+              ><i class="fa-sharp fa-solid fa-bars fa-lg"></i
+            ></a>
+          </li>
+        </ul>
+      </div>
+      <div id="mobile">
+        <a href="cart.html"><i class="far fa-shopping-bag"></i></a>
+        <i id="bar" class="fas fa-outdent"></i>
+      </div>
+    </section>
+
+    <section id="categorie-top"></section>
+
+    <section id="product1" class="section-p1">
+      <div class="down-section">
+        <div class="down-left-section">
+          <div class="pahili">
+            <div class="filters"><h3>Filters</h3></div>
+            <div class="clear-all"><a href="#">CLEAR ALL</a></div>
+          </div>
+          <div class="line"></div>
+          <div>
+            <div><h4>Gender</h4></div>
+            <form>
+              <label>
+                <input type="radio" name="Gender" value="Male" />
+                Male
+              </label>
+              <label>
+                <input type="radio" name="Gender" value="Female" />
+                Female
+              </label>
+            </form>
+            <div id="result"></div>
+          </div>
+
+          <div class="Categorie">
+            <div><h4>Categories</h4></div>
+            <form>
+              <label>
+                <input type="checkbox" name="option" value="option1" />
+                <span class="checkbox-text">Shirts</span>
+              </label>
+              <label>
+                <input type="checkbox" name="option" value="option2" />
+                <span class="checkbox-text">T-Shirts</span>
+              </label>
+              <label>
+                <input type="checkbox" name="option" value="option3" />
+                <span class="checkbox-text">Kurtas</span>
+              </label>
+              <label>
+                <input type="checkbox" name="option" value="option3" />
+                <span class="checkbox-text">Paijamas</span>
+              </label>
+              <label>
+                <input type="checkbox" name="option" value="option3" />
+                <span class="checkbox-text">Track Suit</span>
+              </label>
+              <label>
+                <input type="checkbox" name="option" value="option3" />
+                <span class="checkbox-text">Other</span>
+              </label>
+            </form>
+            <div id="result"></div>
+          </div>
+        </div>
+
+        <div class="down-right-section">
+          <div class="sort-b">
+            <select id="sort-ComboBox" onchange="updateSelectedOption()">
+              <option value="" selected disabled>Sort by: Popularity</option>
+              <option value="option1">Low to High</option>
+              <option value="option2">High to Low</option>
+              <option value="option3">New Arrivals</option>
+              <option value="option4">Customer Rating</option>
+            </select>
+          </div>
+          <h2>Featured Products</h2>
+          <p>Summer Collection New Morden Design</p>
+          <div class="pro-container">
+            <!-- 1st Product Section -->
+            <div class="pro">
+              <img src="pic/ProductImg/1st.jpg" alt="" />
+              <div class="des">
+                <span>HRX</span>
+                <h5>Night Pant</h5>
+                <div class="star">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                </div>
+                <h4>Rs.299</h4>
+              </div>
+              <a href="#"
+                ><i
+                  class="fa-sharp fa-regular fa-heart heart"
+                  style="color: #091e44"
+                ></i
+              ></a>
+            </div>
+
+            <!-- 2nd Product Section -->
+            <div class="pro">
+              <img src="pic/ProductImg/2nd.jpg" alt="" />
+              <div class="des">
+                <span>Levi's</span>
+                <h5>T-Shirt</h5>
+                <div class="star">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                </div>
+                <h4>Rs.219</h4>
+              </div>
+              <a href="#"
+                ><i
+                  class="fa-sharp fa-regular fa-heart heart"
+                  style="color: #091e44"
+                ></i
+              ></a>
+            </div>
+
+            <!-- 3rd Product Section -->
+            <div class="pro">
+              <img src="pic/ProductImg/3rd.jpg" alt="" />
+              <div class="des">
+                <span>Vitaan</span>
+                <h5>Shorts</h5>
+                <div class="star">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                </div>
+                <h4>Rs.129</h4>
+              </div>
+              <a href="#"
+                ><i
+                  class="fa-sharp fa-regular fa-heart heart"
+                  style="color: #091e44"
+                ></i
+              ></a>
+            </div>
+
+            <!-- 4th Product Section -->
+            <div class="pro">
+              <img src="pic/ProductImg/4th.jpg" alt="" />
+              <div class="des">
+                <span>Peter England</span>
+                <h5>Blazers</h5>
+                <div class="star">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                </div>
+                <h4>Rs.389</h4>
+              </div>
+              <a href="#"
+                ><i
+                  class="fa-sharp fa-regular fa-heart heart"
+                  style="color: #091e44"
+                ></i
+              ></a>
+            </div>
+
+            <!-- 5th Product Section -->
+            <div class="pro">
+              <img src="pic/ProductImg/5th.jpg" alt="" />
+              <div class="des">
+                <span>FabIndia</span>
+                <h5>Sari</h5>
+                <div class="star">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                </div>
+                <h4>Rs.199</h4>
+              </div>
+              <a href="#"
+                ><i
+                  class="fa-sharp fa-regular fa-heart heart"
+                  style="color: #091e44"
+                ></i
+              ></a>
+            </div>
+
+            <!-- 6th Product Section -->
+            <div class="pro">
+              <img src="pic/ProductImg/6th.jpg" alt="" />
+              <div class="des">
+                <span>Flying Machine</span>
+                <h5>Jeans</h5>
+                <div class="star">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                </div>
+                <h4>Rs.259</h4>
+              </div>
+              <a href="#"
+                ><i
+                  class="fa-sharp fa-regular fa-heart heart"
+                  style="color: #091e44"
+                ></i
+              ></a>
+            </div>
+
+            <!-- 7th Product Section -->
+            <div class="pro">
+              <img src="pic/ProductImg/7th.jpg" alt="" />
+              <div class="des">
+                <span>Allen Solly</span>
+                <h5>Skirts</h5>
+                <div class="star">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                </div>
+                <h4>Rs.199</h4>
+              </div>
+              <a href="#"
+                ><i
+                  class="fa-sharp fa-regular fa-heart heart"
+                  style="color: #091e44"
+                ></i
+              ></a>
+            </div>
+
+            <!-- 8th Product Section -->
+            <div class="pro">
+              <img src="pic/ProductImg/8th.jpg" alt="" />
+              <div class="des">
+                <span>Levi's</span>
+                <h5>Cargo</h5>
+                <div class="star">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                </div>
+                <h4>Rs.459</h4>
+              </div>
+              <a href="#"
+                ><i
+                  class="fa-sharp fa-regular fa-heart heart"
+                  style="color: #091e44"
+                ></i
+              ></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="pagination" class="section-p1">
+      <a href="#">1</a>
+      <a href="#">2</a>
+      <a href="#"><i class="fa-sharp fa-solid fa-angles-right"></i></a>
+    </section>
+
+    <section id="newsletter" class="section-p1 section-m1">
+      <div class="newstext">
+        <h4>Sign Up For Newsletters</h4>
+        <p>
+          Get E-mail updates about our latest shop &
+          <span>special offers.</span>
+        </p>
+      </div>
+      <div class="form">
+        <input type="text" placeholder="Your E-mail address" />
+        <button class="normal">Sign Up</button>
+      </div>
+    </section>
+
+    <footer class="section-p1">
+      <div class="col">
+        <img class="logo" src="pic/mylogo.png" alt="" />
+        <h4>Contact</h4>
+        <p>
+          <strong>Address:</strong> Gat: Ploat: Shiv Colony Jalgaon Maharashtra
+          India
+        </p>
+        <p><strong>Phone:</strong> (+91) 8080491934 / (+91) 7709977502</p>
+        <p><strong>Hours:</strong> 10:00 - 18:00, Mon - Sat</p>
+        <div class="follow">
+          <h4>Follow Us</h4>
+          <div class="icon">
+            <i class="fa-brands fa-facebook" style="color: #0257e8"></i>
+            <i class="fa-brands fa-instagram" style="color: #fb096a"></i>
+            <i class="fa-brands fa-linkedin" style="color: #025af2"></i>
+            <i class="fa-brands fa-youtube" style="color: #f52500"></i>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <h4>About</h4>
+        <a href="#">About us</a>
+        <a href="#">Delivery Information</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms & Conditions</a>
+        <a href="#">Contact us</a>
+      </div>
+
+      <div class="col">
+        <h4>My Account</h4>
+        <a href="#">Sign In</a>
+        <a href="#">View Cart</a>
+        <a href="#">My Wishlist</a>
+        <a href="#">Tracl My Order</a>
+        <a href="#">Help</a>
+      </div>
+
+      <div class="col install">
+        <h4>Install App</h4>
+        <p>From App Store or Google Play</p>
+        <div class="row">
+          <img src="pic/Footer/appstore.png" alt="" />
+          <img src="pic/Footer/googleplay.png" alt="" />
+        </div>
+        <p>Secured Payment Gateways</p>
+        <img src="pic/Footer/pay.png" alt="" />
+      </div>
+
+      <div class="copyright">
+        <p>© 2023 Tech etc - HTML CSS Ecommerce Template</p>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
