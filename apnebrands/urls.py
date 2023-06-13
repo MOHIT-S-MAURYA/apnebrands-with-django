@@ -17,6 +17,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,include
 
+admin.site.site_header = "apneBrands Admin Portal"
+admin.site.site_title = "apneBrands database"
+admin.site.index_title = "Welcome to apneBrands admin Portal"
 
 urlpatterns = [
     path('admin/', admin.site.urls),
