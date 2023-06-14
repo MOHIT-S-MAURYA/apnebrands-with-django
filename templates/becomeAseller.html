@@ -1,0 +1,167 @@
+{% load static %}
+{% extends 'base.html' %}
+
+
+
+
+{% block body %}
+
+{% block title %} become a seller {% endblock title %}
+
+{% block stylesheet %}
+<link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/becomeAseller.css' %}"
+    />
+{% endblock stylesheet %}
+
+{% block body %}
+
+<section id="hero">
+  <h6> <span>Exclusive offer for a limited time</span></h2>
+  <h6>Become an ApneBrand seller</h2>
+  <p>"Step into the world of business with ApneBrand and be embraced by our dynamic community of sellers, where growth knows no bounds."</p>
+  <button>Start Selling</button>
+</section>
+
+<section id="top" class="section-p1">
+  
+  <div class="image-container">
+    <div class="slide">
+      <img src="pic/top/men.png" alt="Men's Clothing" class="image">
+      <span>Men's Clothing</span>
+    </div>
+    <div class="slide">
+      <img src="pic/top/women.png" alt="Women's Clothing" class="image">
+      <span>Women's Clothing</span>
+    </div>
+
+
+    <div class="slide">
+      <img src="pic/top/women.png" alt="Women's Clothing" class="image">
+      <span>Women's Clothing</span>
+    </div>
+    <div class="slide">
+      <img src="pic/top/women.png" alt="Women's Clothing" class="image">
+      <span>Women's Clothing</span>
+    </div>
+    <div class="slide">
+      <img src="pic/top/women.png" alt="Women's Clothing" class="image">
+      <span>Women's Clothing</span>
+    </div>
+    <div class="slide">
+      <img src="pic/top/women.png" alt="Women's Clothing" class="image">
+      <span>Women's Clothing</span>
+    </div>
+
+
+    <div class="slide">
+      <img src="pic/top/Children.png" alt="Kind's Fashion" class="image">
+      <span>Kind's Fashion</span>
+    </div>
+    <div class="slide">
+      <img src="pic/top/beauty-makeup.png" alt="Beauty and Makeup" class="image">
+      <span>Beauty and Makeup</span>
+    </div>
+    <div class="slide">
+      <img src="pic/top/traditional.png" alt="Traditional Wear" class="image">
+      <span>Traditional Wear</span>
+    </div>
+  </div>
+
+    <button class="prev-button">&#10094;</button>
+    <button class="next-button">&#10095;</button>
+
+</section>
+
+{% endblock body %}
+
+
+
+
+{% comment %} <!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Comatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Apne Brands</title>
+        <script src="https://kit.fontawesome.com/ac8df84308.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="becomeAseller.css">
+    </head>
+    <body>
+
+      <section id="header">
+        <a class="logo-style" href="index.html"><h1 class="logo"><span><h1 class="apne">A</h1></span>pne<span><h1 class="bharat">B</h1>rand</span></h1></a>
+        <div>
+            <ul id="navbar">
+                <li><a  href="#">Sell on ApneBrand</a></li>
+                <li><a  href="#">Pricing</a></li>
+                <li><a  href="#">Shipping & Return</a></li>
+                <li><button class="normal login-b"><a href="#"><strong>Login</strong></a></button></li>
+                <li><button class="normal"><a href="becomeAseller.html"><strong>Start Selling</strong></a></button></li>
+                
+            </ul>
+        </div>
+      </section>
+
+      
+
+      <footer class="section-p1">
+        <div class="col">
+            <img class="logo" src="pic/mylogo.png" alt="">
+            <h4>Contact</h4>
+            <p> <Strong>Address:</Strong> Gat: Ploat: Shiv Colony Jalgaon Maharashtra India</p>
+            <p><strong>Phone:</strong> (+91) 8080491934 / (+91) 7709977502</p>
+            <p><strong>Hours:</strong> 10:00 - 18:00, Mon - Sat</p>
+            <div class="follow">
+              <h4>Follow Us</h4>
+              <div class="icon">
+                <i class="fa-brands fa-facebook " style="color: #0257e8;"></i>
+                <i class="fa-brands fa-instagram " style="color: #fb096a;"></i>
+                <i class="fa-brands fa-linkedin" style="color: #025af2;"></i>
+                <i class="fa-brands fa-youtube"  style="color: #f52500;"></i>
+                
+              </div>
+            </div>
+        </div>
+
+        <div class="col">
+          <h4>About</h4>
+          <a href="#">About us</a>
+          <a href="#">Delivery Information</a>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms & Conditions</a>
+          <a href="#">Contact us</a>
+        </div>
+
+        <div class="col">
+          <h4>My Account</h4>
+          <a href="#">Sign In</a>
+          <a href="#">View Cart</a>
+          <a href="#">My Wishlist</a>
+          <a href="#">Tracl My Order</a>
+          <a href="#">Help</a>
+        </div>
+
+        <div class="col install">
+          <h4>Install App</h4>
+          <p>From App Store or Google Play</p>
+          <div class="row">
+            <img src="pic/Footer/appstore.png" alt="">
+            <img src="pic/Footer/googleplay.png" alt="">
+          </div>
+          <p>Secured Payment Gateways</p>
+          <img src="pic/Footer/pay.png" alt="">
+        </div>
+
+        <div class="copyright">
+          <p>© 2023 Tech etc - HTML CSS Ecommerce Template</p>
+        </div>
+     </footer>
+
+        <script src="script.js"></script>
+    </body>
+    </html>
+   {% endcomment %}
