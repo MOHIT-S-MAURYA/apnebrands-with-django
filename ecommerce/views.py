@@ -1,6 +1,9 @@
 from datetime import datetime
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from ecommerce.models import Contact as ContactModel
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate,logout,login
+from django.contrib import messages
 
 # Create your views here.
 
@@ -35,3 +38,21 @@ def cart(request):
 
 def blog(request):
     return render(request, "blog.html")
+
+def loginuser(request):
+    if request.method == "POST":
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        print(username,password)
+        user=authenticate(username=username,password=password)
+        if user is not None:
+            login(request,user)
+            return render(request, "index.html")
+        else:
+            return render(request, "login.html")
+
+    return render(request, "login.html")
+
+def logoutuser(request):
+    logout(request)
+    return redirect("/login/")

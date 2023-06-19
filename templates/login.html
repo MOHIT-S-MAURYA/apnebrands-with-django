@@ -1,0 +1,61 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Comatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>login | Apne Brands</title>
+    <script
+      src="https://kit.fontawesome.com/ac8df84308.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href= {% static 'css/login.css' %} >
+  </head>
+  <body>
+    <section>
+      <div class="login">
+        <div class="image-container">
+          <img
+            src="Photos/logo/logo1.png"
+            alt="Your Image"
+            class="logo-image"
+          />
+          <h2>Celebrating hometown talent.</h2>
+        </div>
+        <div class="login-box">
+          <h2>Login</h2>
+          <form method="POST" action="/login/">
+            {% csrf_token %}
+            <input
+              type="text"
+              id="username"
+              name="username"
+              placeholder="Phone number or E-mail address"
+            />
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Password"
+            />
+
+            <input type="submit" value="Login" />
+            <a href="#">Forgotten password?</a>
+            <input type="button" value="New Account" class="new-account-btn" />
+            <div class="line-divider"></div>
+            <p class="login-with-text">Login with</p>
+            <div class="social-icons">
+              <!-- Add your social media icons here -->
+              <i class="fab fa-facebook-f"></i>
+              <i class="fab fa-google"></i>
+              <i class="fab fa-instagram"></i>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <script src="login.js"></script>
+  </body>
+</html>

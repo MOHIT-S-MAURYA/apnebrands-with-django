@@ -1,0 +1,124 @@
+body{
+    background-color:  #f2f2f2;
+}
+.login {
+    display: flex;
+    margin: 10% 20% 15% 20%;
+    justify-content:space-between; /* Adjust vertical alignment */
+    align-items: center; /* Adjust horizontal alignment to the right */
+    padding-right:0 20px; /* Increase the right padding */
+    box-sizing: border-box; /* Ensure padding is included in the width */
+    background-color: #f2f2f2;
+  }
+  
+  
+  .image-container {
+    padding: 20px 20px 20px 20px;
+  
+  }
+  
+  .logo-image {
+    max-width: 350px; /* Set the maximum width of the image */
+    width: auto; /* Allow the height to adjust automatically to maintain aspect ratio */
+    height: auto; /* Allow the height to adjust automatically to maintain aspect ratio */
+    cursor: pointer;
+  } 
+  
+ .image-container h2{
+    font-size: 22px;
+    line-height: 26px;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+  }
+  
+  .login-box {
+
+    width: 450px; /* Set the  width of the login box */
+    padding: 20px;
+    text-align: center;
+    background-color: #ffffff;
+    border: 1px solid #f2f2f2;
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    box-sizing: border-box; /* Ensure margin is included in the width */
+  }
+  
+  h2 {
+    text-align: center;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+
+a {
+    display: flex;
+    justify-content: center;
+    text-decoration: none; /* Remove the underline */
+    margin: 10px 0 25px 0; /* Add space between the <a> tag and the button */
+  }
+
+  input[type="text"],
+  input[type="password"] {
+    padding: 10px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 2px solid #e2e2e2;
+  }
+  
+
+input[type="submit"],
+input[type="button"],
+.new-account-btn {
+  padding: 10px;
+  background-color: #1877f2; /* Set the background color to #1877f2 */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+input[type="submit"]:hover,
+input[type="button"]:hover,
+.new-account-btn:hover {
+  background-color: #42b72a; /* Set the hover background color to a darker shade */
+}
+
+
+  .new-account-btn {
+    background-color: #42b72a;
+  }
+
+  p{
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  .line-divider {
+    border-top: 1px solid #ccc; /* Add a horizontal line using the border-top property */
+    margin: 10px auto; /* Center the line horizontally with auto margins */
+    width: 60%; /* Adjust the width of the line as desired */
+  }
+
+  .login-with-text {
+    text-align: center; /* Center-align the "Login with" text */
+  }
+  
+  .social-icons {
+    text-align: center; /* Center-align the social media icons */
+    margin-top: 10px; /* Add spacing between the text and the icons */
+  }
+  
+  .social-icons i {
+    font-size: 24px; /* Adjust the size of the social media icons */
+    margin: 0 10px; /* Add spacing between the icons */
+    transition: color 0.2s ease; /* Add transition effect for smooth color change */
+  } 
+    
+  .social-icons i:hover {
+   cursor: pointer;
+    color:  #1877f2; /* Change the color of the icon when hovered */
+  }
+  
