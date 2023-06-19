@@ -4,10 +4,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    {% block stylesheet %}
-    
-    {% endblock stylesheet %}
-    
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/style.css' %}"
+    />
     <title>{% block title %}{% endblock title %} | apneBrands</title>
   </head>
   <body>
@@ -98,7 +99,6 @@
         <a href="#">My Wishlist</a>
         <a href="#">Track My Order</a>
         <a href="#">Help</a>
-        <a href="becomeAseller.html">become a seller</a>
       </div>
 
       <div class="col install">
