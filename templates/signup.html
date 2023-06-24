@@ -1,0 +1,122 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Apne Brands</title>
+    <link rel="stylesheet" href="{% static 'css/signup.css' %}" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{% static 'js/signup.js' %}"></script>
+  </head>
+  <body>
+    <main class="sign-up">
+      <div class="sign-up__container">
+        <!-- Sign up image -->
+        <div class="sign-up__image">
+          <svg
+            class="chart"
+            viewBox="0 0 800 960"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+          >
+            <!-- SVG content -->
+          </svg>
+        </div>
+        <div class="sign-up__content">
+          <!-- Header -->
+          <header class="sign-up__header">
+            <h1 class="sign-up__title">Sign up</h1>
+            <p class="sign-up__descr">Welcome, please sign up for your account.</p>
+          </header>
+
+          <!-- Sign-up form -->
+          <form method="POST" action="/signup/" class="sign-up__form form" id="signup-form">
+            {% csrf_token %}
+            <div class="form__row form__row--two">
+              <!-- First name -->
+              <div class="input form__inline-input">
+                <div class="input__container">
+                  <input class="input__field" id="first-name" placeholder="First Name" name="first-name" required type="text" />
+                  <label class="input__label" for="first-name">First Name</label>
+                </div>
+              </div>
+              <!-- Last name -->
+              <div class="input form__inline-input">
+                <div class="input__container">
+                  <input class="input__field" id="last-name" placeholder="Last Name" name="last-name" required type="text" />
+                  <label class="input__label" for="last-name">Last Name</label>
+                </div>
+              </div>
+            </div>
+            <!-- Username -->
+            <div class="form__row">
+              <div class="input">
+                <div class="input__container">
+                  <input class="input__field" id="username" placeholder="Username" name="username" required type="text" />
+                  <label class="input__label" for="username">Username</label>
+                  <span id="username-error" class="username-verification" style="display: none; color: red;"></span>
+                </div>
+              </div>
+            </div>
+            <!-- Email -->
+            <div class="form__row">
+              <div class="input">
+                <div class="input__container">
+                  <input class="input__field" id="email" placeholder="Email" name="email" required type="text" />
+                  <label class="input__label" for="email">Email</label>
+                  <span id="email-error" class="email-verification" style="display: none; color: red;"></span>
+                </div>
+              </div>  
+            </div>
+            <!-- Password -->
+            <div class="form__row">
+              <div class="input">
+                <div class="input__container">
+                  <input class="input__field" id="password" placeholder="Password" name="password" required type="password" />
+                  <label class="input__label" for="password">Password</label>
+                </div>
+              </div>
+            </div>
+            <!-- Confirm password -->
+            <div class="form__row">
+              <div class="input">
+                <div class="input__container">
+                  <input class="input__field" id="confirm-password" placeholder="Confirm password" required type="password" />
+                  <label class="input__label" for="confirm-password">Confirm password</label>
+                  <span id="confirm-password-error" style="display: none; color: red;"></span>
+                </div>
+              </div>
+            </div>
+            <!-- Agree check box -->
+            <div class="form__row">
+              <div class="input-checkbox">
+                <div class="input-checkbox__container">
+                  <input checked class="input-checkbox__field" id="agree" required type="checkbox" />
+                  <span class="input-checkbox__square"></span>
+                  <label class="input-checkbox__label" for="agree">I agree with terms and conditions</label>
+                </div>
+              </div>
+            </div>
+            <!-- Sign up button -->
+            <div class="form__row">
+              <div class="component component--primary form__button">
+                <button type="submit" class="btn btn--regular" disabled id="sign-up-button">Sign up</button>
+              </div>
+            </div>
+            <!-- Sign in link -->
+            <div class="form__row sign-up__sign">
+              Already have an account? &nbsp;<a class="link" href="#">Sign in.</a>
+            </div>
+            <!-- Terms link -->
+            <div class="form__row sign-up__terms">
+              <a class="link" href="#">Term of use. Privacy policy</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
+
