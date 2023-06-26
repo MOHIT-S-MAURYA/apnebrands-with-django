@@ -10,52 +10,49 @@
       src="https://kit.fontawesome.com/ac8df84308.js"
       crossorigin="anonymous"
     ></script>
+    <script src="login.js"></script>
     <link rel="stylesheet" href= {% static 'css/login.css' %} >
   </head>
   <body>
-    <section>
-      <div class="login">
-        <div class="image-container">
-          <img
-            src="Photos/logo/logo1.png"
-            alt="Your Image"
-            class="logo-image"
-          />
-          <h2>Celebrating hometown talent.</h2>
+    <section class="user">
+      <div class="user_options-container">
+        <div class="user_options-text">
+          <div class="user_options-unregistered">
+            <h2 class="user_unregistered-title">Don't have an account?</h2>
+            <p class="user_unregistered-text">Banjo tote bag bicycle rights, High Life sartorial cray craft beer whatever street art fap.</p>
+            <a href="{% url 'signup' %}"><button class="user_unregistered-signup" id="signup-button">Sign up</button></a>
+          </div>
+    
+          <div class="user_options-registered">
+            <h2 class="user_registered-title">Have an account?</h2>
+            <p class="user_registered-text">Banjo tote bag bicycle rights, High Life sartorial cray craft beer whatever street art fap.</p>
+            <button class="user_registered-login" id="login-button">Login</button>
+          </div>
         </div>
-        <div class="login-box">
-          <h2>Login</h2>
-          <form method="POST" action="/login/">
-            {% csrf_token %}
-            <input
-              type="text"
-              id="username"
-              name="username"
-              placeholder="Phone number or E-mail address"
-            />
-            <input
-              type="password"
-              id="password"
-              name="password"
-              placeholder="Password"
-            />
-
-            <input type="submit" value="Login" />
-            <a href="#">Forgotten password?</a>
-            <input type="button" value="New Account" class="new-account-btn" />
-            <div class="line-divider"></div>
-            <p class="login-with-text">Login with</p>
-            <div class="social-icons">
-              <!-- Add your social media icons here -->
-              <i class="fab fa-facebook-f"></i>
-              <i class="fab fa-google"></i>
-              <i class="fab fa-instagram"></i>
-            </div>
-          </form>
+        
+        <div class="user_options-forms" id="user_options-forms">
+          <div class="user_forms-login">
+            <h2 class="forms_title">Login</h2>
+            <form method="POST" action="/login/" class="forms_form">
+              {% csrf_token %}
+              <fieldset class="forms_fieldset">
+                <div class="forms_field">
+                  <input type="text" placeholder="username" class="forms_field-input" name="username" required autofocus />
+                </div>
+                <div class="forms_field">
+                  <input type="password" placeholder="Password" name="password" class="forms_field-input" required />
+                </div>
+              </fieldset>
+              <div class="forms_buttons">
+                <button type="button" class="forms_buttons-forgot">Forgot password?</button>
+                <input type="submit" value="Login" class="forms_buttons-action">
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </section>
 
-    <script src="login.js"></script>
+
   </body>
 </html>

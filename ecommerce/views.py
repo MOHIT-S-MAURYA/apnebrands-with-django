@@ -5,6 +5,7 @@ from ecommerce.models import Contact as ContactModel
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,logout,login
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -42,22 +43,35 @@ def blog(request):
 
 #login user view
 def loginuser(request):
-    if request.method == "POST":
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-        print(username,password)
-        user=authenticate(username=username,password=password)
-        if user is not None:
-            login(request,user)
-            return render(request, "index.html")
-        else:
-            return render(request, "login.html")
+    if request.user.is_authenticated:
+        print ("user is authenticated")
+        print(User.email)
+        return redirect("/")
+    else:
+        print("user is not authenticated")
+        
+        if request.method == "POST":
+            username = request.POST.get('username')
+            password = request.POST.get('password')
+            print(username,password)
+            user=authenticate(username=username,password=password)
+            if user is not None:
+                print("user is not None")
+                login(request,user)
+                print(user.email,"logged in")
+                return render(request, "index.html")
+            else:
+                print("user is None")
+                return render(request, "login.html")
 
-    return render(request, "login.html")
+        return render(request, "login.html")
 
 #logout user view 
+@login_required(login_url='/login/')
 def logoutuser(request):
     logout(request)
+    print("user logged out ")
+    # print(User.is_authenticated)
     return redirect("/")
 
 #email and username validation view
