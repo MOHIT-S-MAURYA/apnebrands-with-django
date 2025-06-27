@@ -1,0 +1,222 @@
+{% extends 'modern_base.html' %}
+{% load static %}
+
+{% block title %}Shop{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/shop.css' %}">
+{% endblock %}
+
+{% block content %}
+<!-- Shop Header -->
+<section class="shop-header">
+    <div class="container">
+        <div class="row align-center">
+            <div class="col">
+                <h1>Authentic Indigenous Products</h1>
+                <p>Discover handcrafted treasures made by talented indigenous artisans from across the region</p>
+            </div>
+            <div class="col text-right">
+                <nav class="breadcrumb-nav">
+                    <a href="{% url 'index' %}">Home</a>
+                    <span>/</span>
+                    <span class="current">Shop</span>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Shop Content -->
+<div class="shop-container">
+    <div class="container">
+        <div class="shop-layout">
+            <!-- Filters Sidebar -->
+            <aside class="filters-sidebar">
+                <div class="d-flex justify-between align-center mb-3">
+                    <h3>Filters</h3>
+                    <button class="btn btn-small clear-filters-btn">Clear All</button>
+                </div>
+                <!-- Category Filter -->
+                <div class="filter-group" data-filter-type="category">
+                    <h4>Categories</h4>
+                    <div class="filter-options">
+                        {% for category in categories %}
+                        <div class="filter-option">
+                            <input type="checkbox" id="category-{{ category.id }}" value="{{ category.slug }}">
+                            <label for="category-{{ category.id }}">{{ category.name }}</label>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <!-- Price Filter -->
+                <div class="filter-group" data-filter-type="price">
+                    <h4>Price Range</h4>
+                    <div class="filter-options">
+                        <div class="filter-option">
+                            <input type="checkbox" id="price-0-500" value="0-500">
+                            <label for="price-0-500">Under ₹500</label>
+                        </div>
+                        <div class="filter-option">
+                            <input type="checkbox" id="price-500-1000" value="500-1000">
+                            <label for="price-500-1000">₹500 - ₹1,000</label>
+                        </div>
+                        <div class="filter-option">
+                            <input type="checkbox" id="price-1000-2000" value="1000-2000">
+                            <label for="price-1000-2000">₹1,000 - ₹2,000</label>
+                        </div>
+                        <div class="filter-option">
+                            <input type="checkbox" id="price-2000-plus" value="2000+">
+                            <label for="price-2000-plus">Above ₹2,000</label>
+                        </div>
+                    </div>
+                </div>
+                <!-- Rating Filter -->
+                <div class="filter-group" data-filter-type="rating">
+                    <h4>Customer Rating</h4>
+                    <div class="filter-options">
+                        <div class="filter-option">
+                            <input type="radio" id="rating-5" name="rating" value="5">
+                            <label for="rating-5">
+                                <div class="stars">
+                                    <i class="fas fa-star star"></i>
+                                    <i class="fas fa-star star"></i>
+                                    <i class="fas fa-star star"></i>
+                                    <i class="fas fa-star star"></i>
+                                    <i class="fas fa-star star"></i>
+                                </div>
+                                & up
+                            </label>
+                        </div>
+                        <div class="filter-option">
+                            <input type="radio" id="rating-4" name="rating" value="4">
+                            <label for="rating-4">
+                                <div class="stars">
+                                    <i class="fas fa-star star"></i>
+                                    <i class="fas fa-star star"></i>
+                                    <i class="fas fa-star star"></i>
+                                    <i class="fas fa-star star"></i>
+                                    <i class="far fa-star star empty"></i>
+                                </div>
+                                & up
+                            </label>
+                        </div>
+                        <div class="filter-option">
+                            <input type="radio" id="rating-3" name="rating" value="3">
+                            <label for="rating-3">
+                                <div class="stars">
+                                    <i class="fas fa-star star"></i>
+                                    <i class="fas fa-star star"></i>
+                                    <i class="fas fa-star star"></i>
+                                    <i class="far fa-star star empty"></i>
+                                    <i class="far fa-star star empty"></i>
+                                </div>
+                                & up
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+            <!-- Products Section -->
+            <main class="products-section">
+                <!-- Sort and Results Header -->
+                <div class="shop-header-controls">
+                    <div class="results-info">
+                        <span>Showing <strong>{{ products|length }}</strong> products</span>
+                    </div>
+                    <div class="sort-controls">
+                        <label for="sort-select">Sort by:</label>
+                        <select id="sort-select">
+                            <option value="popularity">Popularity</option>
+                            <option value="price-low">Price: Low to High</option>
+                            <option value="price-high">Price: High to Low</option>
+                            <option value="newest">Newest First</option>
+                            <option value="rating">Customer Rating</option>
+                        </select>
+                        <div class="view-toggle">
+                            <button class="view-btn active" data-view="grid" title="Grid View">
+                                <i class="fas fa-th"></i>
+                            </button>
+                            <button class="view-btn" data-view="list" title="List View">
+                                <i class="fas fa-list"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Products Grid -->
+                <div class="products-grid grid-view" id="products-grid">
+                    {% for product in products %}
+                    <div class="product-card" data-product-id="{{ product.id }}">
+                        <div class="product-image">
+                            {% if product.image %}
+                                <img src="{{ product.image.url }}" alt="{{ product.name }}" loading="lazy">
+                            {% else %}
+                                <img src="{% static 'images/placeholder-product.jpg' %}" alt="{{ product.name }}" loading="lazy">
+                            {% endif %}
+                            {% if product.is_featured %}
+                                <div class="product-badge bestseller">Featured</div>
+                            {% endif %}
+                            <div class="product-actions">
+                                <button class="action-btn wishlist-btn" data-product-id="{{ product.id }}" title="Add to Wishlist">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                                <button class="action-btn quick-view-btn" data-product-id="{{ product.id }}" title="Quick View">
+                                    <i class="far fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <div class="product-brand">{{ product.category.name }}</div>
+                            <h3 class="product-title">
+                                <a href="{% url 'product_detail' product.id %}">{{ product.name }}</a>
+                            </h3>
+                            <div class="product-rating">
+                                <div class="stars">
+                                    <i class="fas fa-star star"></i>
+                                    <i class="fas fa-star star"></i>
+                                    <i class="fas fa-star star"></i>
+                                    <i class="fas fa-star star"></i>
+                                    <i class="far fa-star star empty"></i>
+                                </div>
+                                <span class="rating-count">({{ product.id|add:5 }} reviews)</span>
+                            </div>
+                            <div class="product-price">
+                                <span class="current-price">₹{{ product.price }}</span>
+                                {% if product.compare_price and product.compare_price > product.price %}
+                                    <span class="original-price">₹{{ product.compare_price }}</span>
+                                    <span class="discount">SALE</span>
+                                {% endif %}
+                            </div>
+                            <button class="add-to-cart" data-product-id="{{ product.id }}" data-product-name="{{ product.name }}">
+                                <i class="fas fa-cart-plus"></i>
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                    {% empty %}
+                    <div class="no-products-message">
+                        <h3>No products found</h3>
+                        <p>Try adjusting your search or filter criteria.</p>
+                    </div>
+                    {% endfor %}
+                </div>
+                <!-- Pagination -->
+                <div class="pagination-wrapper">
+                    <button class="pagination-btn" disabled>
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="pagination-btn active">1</button>
+                    <button class="pagination-btn">2</button>
+                    <button class="pagination-btn">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </main>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/shop.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,107 @@
+{% extends "modern_base.html" %}
+{% load static %}
+
+{% block title %}Login - apneBrands{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/login.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="auth-container">
+        <!-- Visual Section -->
+        <div class="auth-visual">
+            <div class="auth-content">
+                <h1 style="font-size: 2.5rem; margin-bottom: 16px; color: white;">Welcome Back!</h1>
+                <p style="font-size: 18px; margin-bottom: 32px; opacity: 0.9;">Discover authentic indigenous crafts and support local artisans</p>
+                
+                <div style="display: flex; justify-content: center; gap: 24px; margin-bottom: 32px;">
+                    <div style="text-align: center;">
+                        <div style="width: 60px; height: 60px; background: rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 12px;">
+                            <i class="fas fa-hand-holding-heart" style="font-size: 24px;"></i>
+                        </div>
+                        <p style="font-size: 14px; opacity: 0.9; margin: 0;">Handcrafted</p>
+                    </div>
+                    
+                    <div style="text-align: center;">
+                        <div style="width: 60px; height: 60px; background: rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 12px;">
+                            <i class="fas fa-leaf" style="font-size: 24px;"></i>
+                        </div>
+                        <p style="font-size: 14px; opacity: 0.9; margin: 0;">Sustainable</p>
+                    </div>
+                    
+                    <div style="text-align: center;">
+                        <div style="width: 60px; height: 60px; background: rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 12px;">
+                            <i class="fas fa-users" style="font-size: 24px;"></i>
+                        </div>
+                        <p style="font-size: 14px; opacity: 0.9; margin: 0;">Community</p>
+                    </div>
+                </div>
+                
+                <a href="{% url 'index' %}" style="color: white; opacity: 0.8; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                    <i class="fas fa-arrow-left"></i>
+                    Back to Home
+                </a>
+            </div>
+        </div>
+        
+        <!-- Form Section -->
+        <div class="auth-form-section">
+            <div class="auth-form-container">
+                <!-- Logo -->
+                <div style="text-align: center; margin-bottom: 32px;">
+                    <a href="{% url 'index' %}" style="font-family: var(--font-display); font-size: 28px; font-weight: 700; color: var(--primary-color); text-decoration: none;">
+                        Apne<span style="color: var(--secondary-color);">Brands</span>
+                    </a>
+                </div>
+                
+                <!-- Form Header -->
+                <div style="text-align: center; margin-bottom: 32px;">
+                    <h2 style="margin-bottom: 8px; color: var(--text-dark);">Sign in to your account</h2>
+                    <p style="color: var(--text-light); margin: 0;">Welcome back! Please enter your details</p>
+                </div>
+                
+                <!-- Login Form -->
+                <form method="POST" action="{% url 'loginuser' %}" class="auth-form" id="loginForm">
+                    {% csrf_token %}
+                    
+                    <div class="form-group">
+                        <label for="username" class="form-label">Username or Email</label>
+                        <input type="text" id="username" name="username" class="form-input" placeholder="Enter your username or email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password" class="form-label">Password</label>
+                        <div class="password-input-group">
+                            <input type="password" id="password" name="password" class="form-input" placeholder="Enter your password" required>
+                            <button type="button" class="password-toggle" onclick="togglePassword()">
+                                <i class="far fa-eye" id="passwordIcon"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="remember-forgot">
+                        <label class="remember-me">
+                            <input type="checkbox" name="remember_me">
+                            Remember me
+                        </label>
+                        <a href="#" class="forgot-password">Forgot password?</a>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary w-full btn-large">
+                        <i class="fas fa-sign-in-alt"></i>
+                        Sign In
+                    </button>
+                </form>
+                
+                <div class="auth-switch">
+                    Don't have an account? <a href="{% url 'signupuser' %}">Sign up for free</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/login.js' %}"></script>
+{% endblock %}

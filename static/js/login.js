@@ -1,28 +1,46 @@
-/**
- * Variables
- */
-const signupButton = document.getElementById('signup-button'),
-    loginButton = document.getElementById('login-button'),
-    userForms = document.getElementById('user_options-forms')
+function togglePassword() {
+    const passwordInput = document.getElementById('password');
+    const passwordIcon = document.getElementById('passwordIcon');
+    
+    if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        passwordIcon.classList.remove('fa-eye');
+        passwordIcon.classList.add('fa-eye-slash');
+    } else {
+        passwordInput.type = 'password';
+        passwordIcon.classList.remove('fa-eye-slash');
+        passwordIcon.classList.add('fa-eye');
+    }
+}
 
-/**
- * Add event listener to the "Sign Up" button
- */
-signupButton.addEventListener('click', () => {
-  userForms.classList.remove('bounceRight')
-  userForms.classList.add('bounceLeft')
-}, false)
+// Form validation
+document.getElementById('loginForm').addEventListener('submit', function(e) {
+    const username = document.getElementById('username');
+    const password = document.getElementById('password');
+    let isValid = true;
+    
+    // Reset previous error states
+    username.classList.remove('error');
+    password.classList.remove('error');
+    
+    if (!username.value.trim()) {
+        username.classList.add('error');
+        isValid = false;
+    }
+    
+    if (!password.value.trim()) {
+        password.classList.add('error');
+        isValid = false;
+    }
+    
+    if (!isValid) {
+        e.preventDefault();
+    }
+});
 
-/**
- * Add event listener to the "Login" button
- */
-loginButton.addEventListener('click', () => {
-  userForms.classList.remove('bounceLeft')
-  userForms.classList.add('bounceRight')
-}, false)
-
-// // function to redirect to sign up page using the sign up button
-
-// var toSignUp = function() {
-//     window.location.href = "{% url 'signup/' %}";
-// }
+// Remove error state on input
+document.querySelectorAll('.form-input').forEach(input => {
+    input.addEventListener('input', function() {
+        this.classList.remove('error');
+    });
+});

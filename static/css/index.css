@@ -1,0 +1,8 @@
+.category-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-xl);
+}
+
+.category-card:hover img {
+    transform: scale(1.05);
+}

@@ -1,0 +1,419 @@
+{% extends 'modern_base.html' %}
+{% load static %}
+
+{% block title %}Product Detail{% endblock %}
+
+{% block content %}
+<!-- Breadcrumb -->
+<section class="breadcrumb-section" style="background-color: var(--bg-light); padding: 20px 0;">
+    <div class="container">
+        <nav style="font-size: 14px; color: var(--text-light);">
+            <a href="{% url 'index' %}" style="color: var(--text-light);">Home</a>
+            <span style="margin: 0 8px;">/</span>
+            <a href="{% url 'shop' %}" style="color: var(--text-light);">Shop</a>
+            <span style="margin: 0 8px;">/</span>
+            <span style="color: var(--primary-color);">Handwoven Traditional Scarf</span>
+        </nav>
+    </div>
+</section>
+
+<!-- Product Details -->
+<section class="product-details" style="padding: var(--section-padding);">
+    <div class="container">
+        <div class="row">
+            <!-- Product Images -->
+            <div class="col" style="max-width: 600px;">
+                <div class="product-gallery">
+                    <!-- Main Image -->
+                    <div class="main-image-container" style="margin-bottom: 20px;">
+                        <img id="mainProductImage" class="main-product-image" src="{% static 'images/products/handwoven-scarf-main.jpg' %}" alt="Handwoven Traditional Scarf" style="width: 100%; height: 500px; object-fit: cover; border-radius: 12px; box-shadow: var(--shadow-lg);">
+                        
+                        <!-- Image Badges -->
+                        <div style="position: absolute; top: 16px; left: 16px; display: flex; flex-direction: column; gap: 8px;">
+                            <span class="product-badge new">New</span>
+                            <span class="product-badge" style="background-color: var(--secondary-color);">Handmade</span>
+                        </div>
+                        
+                        <!-- Zoom Icon -->
+                        <button class="zoom-btn" style="position: absolute; top: 16px; right: 16px; width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.9); border: none; display: flex; align-items: center; justify-content: center; cursor: pointer;">
+                            <i class="fas fa-expand-alt"></i>
+                        </button>
+                    </div>
+                    
+                    <!-- Thumbnail Images -->
+                    <div class="thumbnail-gallery" style="display: flex; gap: 12px; justify-content: center;">
+                        <img class="product-thumbnail active" src="{% static 'images/products/handwoven-scarf-main.jpg' %}" alt="Main view" style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px; cursor: pointer;">
+                        <img class="product-thumbnail" src="{% static 'images/products/handwoven-scarf-detail1.jpg' %}" alt="Detail view" style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px; cursor: pointer;">
+                        <img class="product-thumbnail" src="{% static 'images/products/handwoven-scarf-detail2.jpg' %}" alt="Texture view" style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px; cursor: pointer;">
+                        <img class="product-thumbnail" src="{% static 'images/products/handwoven-scarf-lifestyle.jpg' %}" alt="Lifestyle view" style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px; cursor: pointer;">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Product Information -->
+            <div class="col">
+                <div class="product-info-detailed" style="padding-left: 40px;">
+                    <!-- Product Title and Brand -->
+                    <div class="product-header" style="margin-bottom: 24px;">
+                        <div class="product-brand" style="color: var(--text-light); font-size: 14px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;">Traditional Weaves</div>
+                        <h1 style="font-size: 2.5rem; margin-bottom: 16px; color: var(--text-dark);">Handwoven Traditional Scarf</h1>
+                        
+                        <!-- Rating and Reviews -->
+                        <div class="rating-reviews" style="display: flex; align-items: center; gap: 16px; margin-bottom: 20px;">
+                            <div class="product-rating">
+                                <div class="stars" style="display: flex; gap: 4px;">
+                                    <i class="fas fa-star star" style="color: #fbbf24;"></i>
+                                    <i class="fas fa-star star" style="color: #fbbf24;"></i>
+                                    <i class="fas fa-star star" style="color: #fbbf24;"></i>
+                                    <i class="fas fa-star star" style="color: #fbbf24;"></i>
+                                    <i class="fas fa-star star" style="color: #fbbf24;"></i>
+                                </div>
+                            </div>
+                            <span style="color: var(--text-light); font-size: 14px;">(4.8 out of 5)</span>
+                            <a href="#reviews" style="color: var(--primary-color); font-size: 14px; text-decoration: underline;">24 Reviews</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Price -->
+                    <div class="product-pricing" style="margin-bottom: 32px; padding: 20px; background-color: var(--bg-light); border-radius: 12px;">
+                        <div class="price-main" style="display: flex; align-items: center; gap: 16px; margin-bottom: 12px;">
+                            <span class="current-price" style="font-size: 2rem; font-weight: 700; color: var(--primary-color);">₹1,299</span>
+                            <span class="original-price" style="font-size: 1.2rem; color: var(--text-light); text-decoration: line-through;">₹1,599</span>
+                            <span class="discount-badge" style="background-color: var(--warm-orange); color: white; padding: 4px 8px; border-radius: 4px; font-size: 14px; font-weight: 600;">19% OFF</span>
+                        </div>
+                        <p style="color: var(--text-light); font-size: 14px; margin: 0;">Inclusive of all taxes | Free shipping on orders above ₹999</p>
+                    </div>
+                    
+                    <!-- Product Options -->
+                    <div class="product-options" style="margin-bottom: 32px;">
+                        <!-- Color Selection -->
+                        <div class="option-group" style="margin-bottom: 20px;">
+                            <label style="display: block; font-weight: 600; margin-bottom: 12px; color: var(--text-dark);">Color: <span id="selectedColor">Traditional Red</span></label>
+                            <div class="color-options" style="display: flex; gap: 12px;">
+                                <button class="color-option active" data-color="Traditional Red" style="width: 40px; height: 40px; border-radius: 50%; background-color: #b91c1c; border: 3px solid var(--primary-color); cursor: pointer;"></button>
+                                <button class="color-option" data-color="Royal Blue" style="width: 40px; height: 40px; border-radius: 50%; background-color: #1e40af; border: 2px solid var(--border-color); cursor: pointer;"></button>
+                                <button class="color-option" data-color="Forest Green" style="width: 40px; height: 40px; border-radius: 50%; background-color: #166534; border: 2px solid var(--border-color); cursor: pointer;"></button>
+                                <button class="color-option" data-color="Golden Yellow" style="width: 40px; height: 40px; border-radius: 50%; background-color: #ca8a04; border: 2px solid var(--border-color); cursor: pointer;"></button>
+                            </div>
+                        </div>
+                        
+                        <!-- Size Selection -->
+                        <div class="option-group" style="margin-bottom: 20px;">
+                            <label style="display: block; font-weight: 600; margin-bottom: 12px; color: var(--text-dark);">Size:</label>
+                            <div class="size-options" style="display: flex; gap: 8px;">
+                                <button class="size-option" data-size="Small" style="padding: 8px 16px; border: 2px solid var(--border-color); background: white; border-radius: 6px; cursor: pointer; transition: var(--transition-fast);">Small</button>
+                                <button class="size-option active" data-size="Medium" style="padding: 8px 16px; border: 2px solid var(--primary-color); background: var(--primary-color); color: white; border-radius: 6px; cursor: pointer;">Medium</button>
+                                <button class="size-option" data-size="Large" style="padding: 8px 16px; border: 2px solid var(--border-color); background: white; border-radius: 6px; cursor: pointer; transition: var(--transition-fast);">Large</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Quantity -->
+                        <div class="option-group" style="margin-bottom: 20px;">
+                            <label style="display: block; font-weight: 600; margin-bottom: 12px; color: var(--text-dark);">Quantity:</label>
+                            <div class="quantity-selector" style="display: flex; align-items: center; gap: 12px;">
+                                <div class="quantity-controls" style="display: flex; align-items: center; border: 2px solid var(--border-color); border-radius: 8px;">
+                                    <button class="quantity-btn decrement" style="padding: 8px 12px; border: none; background: none; cursor: pointer;">-</button>
+                                    <input type="number" class="quantity-input" value="1" min="1" max="10" style="width: 60px; text-align: center; border: none; padding: 8px;">
+                                    <button class="quantity-btn increment" style="padding: 8px 12px; border: none; background: none; cursor: pointer;">+</button>
+                                </div>
+                                <span style="color: var(--text-light); font-size: 14px;">Only 8 items left in stock</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Action Buttons -->
+                    <div class="product-actions" style="margin-bottom: 32px;">
+                        <div style="display: flex; gap: 16px; margin-bottom: 16px;">
+                            <button class="btn btn-primary btn-large" id="addToCartBtn" style="flex: 2;">
+                                <i class="fas fa-cart-plus"></i>
+                                Add to Cart
+                            </button>
+                            <button class="btn btn-outline btn-large" id="buyNowBtn" style="flex: 1;">
+                                Buy Now
+                            </button>
+                        </div>
+                        <div style="display: flex; gap: 12px;">
+                            <button class="btn btn-outline" id="wishlistBtn" style="flex: 1;">
+                                <i class="far fa-heart"></i>
+                                Add to Wishlist
+                            </button>
+                            <button class="btn btn-outline" id="shareBtn" style="flex: 1;">
+                                <i class="fas fa-share-alt"></i>
+                                Share
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Product Features -->
+                    <div class="product-features" style="padding: 20px; background-color: var(--bg-light); border-radius: 12px; margin-bottom: 32px;">
+                        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;">
+                            <div style="display: flex; align-items: center; gap: 12px;">
+                                <i class="fas fa-hand-holding-heart" style="color: var(--primary-color); font-size: 18px;"></i>
+                                <span style="font-size: 14px;">Handcrafted</span>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 12px;">
+                                <i class="fas fa-leaf" style="color: var(--secondary-color); font-size: 18px;"></i>
+                                <span style="font-size: 14px;">Eco-Friendly</span>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 12px;">
+                                <i class="fas fa-shipping-fast" style="color: var(--primary-color); font-size: 18px;"></i>
+                                <span style="font-size: 14px;">Free Shipping</span>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 12px;">
+                                <i class="fas fa-undo-alt" style="color: var(--secondary-color); font-size: 18px;"></i>
+                                <span style="font-size: 14px;">Easy Returns</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Artisan Information -->
+                    <div class="artisan-info" style="display: flex; align-items: center; gap: 16px; padding: 20px; border: 2px solid var(--border-color); border-radius: 12px;">
+                        <img src="{% static 'images/artisans/artisan-1.jpg' %}" alt="Artisan" style="width: 60px; height: 60px; border-radius: 50%; object-fit: cover;">
+                        <div>
+                            <h4 style="margin-bottom: 4px; color: var(--text-dark);">Made by Kamala Devi</h4>
+                            <p style="color: var(--text-light); font-size: 14px; margin: 0;">Traditional weaver from Rajasthan with 20+ years of experience</p>
+                        </div>
+                        <a href="#" class="btn btn-small btn-outline" style="margin-left: auto;">View Profile</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Product Details Tabs -->
+<section class="product-tabs" style="padding: 40px 0; background-color: var(--bg-light);">
+    <div class="container">
+        <!-- Tab Navigation -->
+        <div class="tab-navigation" style="display: flex; gap: 2px; margin-bottom: 32px; background-color: white; border-radius: 12px; padding: 4px;">
+            <button class="tab-btn active" data-tab="description" style="flex: 1; padding: 12px 24px; border: none; background: var(--primary-color); color: white; border-radius: 8px; font-weight: 500; cursor: pointer;">Description</button>
+            <button class="tab-btn" data-tab="specifications" style="flex: 1; padding: 12px 24px; border: none; background: none; color: var(--text-dark); border-radius: 8px; font-weight: 500; cursor: pointer;">Specifications</button>
+            <button class="tab-btn" data-tab="care" style="flex: 1; padding: 12px 24px; border: none; background: none; color: var(--text-dark); border-radius: 8px; font-weight: 500; cursor: pointer;">Care Instructions</button>
+            <button class="tab-btn" data-tab="reviews" style="flex: 1; padding: 12px 24px; border: none; background: none; color: var(--text-dark); border-radius: 8px; font-weight: 500; cursor: pointer;">Reviews (24)</button>
+        </div>
+        
+        <!-- Tab Content -->
+        <div class="tab-content">
+            <!-- Description Tab -->
+            <div class="tab-pane active" id="description" style="background-color: white; padding: 32px; border-radius: 12px; box-shadow: var(--shadow-sm);">
+                <h3 style="margin-bottom: 20px;">Product Description</h3>
+                <p style="margin-bottom: 16px;">This exquisite handwoven traditional scarf represents the pinnacle of indigenous craftsmanship. Each piece is meticulously crafted by skilled artisan Kamala Devi, who brings over two decades of weaving expertise from the vibrant state of Rajasthan.</p>
+                
+                <p style="margin-bottom: 16px;">The scarf features intricate traditional patterns that have been passed down through generations, telling the story of our rich cultural heritage. Made from premium quality cotton threads, this scarf offers both comfort and durability while maintaining its authentic charm.</p>
+                
+                <h4 style="margin: 24px 0 16px 0;">Key Features:</h4>
+                <ul style="margin-left: 20px; margin-bottom: 20px;">
+                    <li style="margin-bottom: 8px;">100% handwoven by traditional artisans</li>
+                    <li style="margin-bottom: 8px;">Premium quality cotton material</li>
+                    <li style="margin-bottom: 8px;">Traditional block printing techniques</li>
+                    <li style="margin-bottom: 8px;">Natural dyes for vibrant colors</li>
+                    <li style="margin-bottom: 8px;">Supports indigenous artisan communities</li>
+                </ul>
+                
+                <p>Each purchase directly supports the artisan and helps preserve these traditional weaving techniques for future generations.</p>
+            </div>
+            
+            <!-- Specifications Tab -->
+            <div class="tab-pane" id="specifications" style="background-color: white; padding: 32px; border-radius: 12px; box-shadow: var(--shadow-sm); display: none;">
+                <h3 style="margin-bottom: 20px;">Product Specifications</h3>
+                <div class="spec-table" style="display: grid; grid-template-columns: 1fr 2fr; gap: 16px;">
+                    <div style="font-weight: 600; color: var(--text-dark);">Material:</div>
+                    <div>100% Pure Cotton</div>
+                    
+                    <div style="font-weight: 600; color: var(--text-dark);">Dimensions:</div>
+                    <div>180cm x 70cm (Length x Width)</div>
+                    
+                    <div style="font-weight: 600; color: var(--text-dark);">Weight:</div>
+                    <div>150 grams</div>
+                    
+                    <div style="font-weight: 600; color: var(--text-dark);">Origin:</div>
+                    <div>Rajasthan, India</div>
+                    
+                    <div style="font-weight: 600; color: var(--text-dark);">Artisan:</div>
+                    <div>Kamala Devi</div>
+                    
+                    <div style="font-weight: 600; color: var(--text-dark);">Technique:</div>
+                    <div>Hand weaving with block printing</div>
+                    
+                    <div style="font-weight: 600; color: var(--text-dark);">Dyes:</div>
+                    <div>Natural plant-based dyes</div>
+                    
+                    <div style="font-weight: 600; color: var(--text-dark);">Pattern:</div>
+                    <div>Traditional Rajasthani motifs</div>
+                </div>
+            </div>
+            
+            <!-- Care Instructions Tab -->
+            <div class="tab-pane" id="care" style="background-color: white; padding: 32px; border-radius: 12px; box-shadow: var(--shadow-sm); display: none;">
+                <h3 style="margin-bottom: 20px;">Care Instructions</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px;">
+                    <div class="care-item" style="display: flex; align-items: flex-start; gap: 12px;">
+                        <i class="fas fa-tint" style="color: var(--primary-color); font-size: 20px; margin-top: 4px;"></i>
+                        <div>
+                            <h4 style="margin-bottom: 8px;">Washing</h4>
+                            <p style="font-size: 14px; margin: 0;">Hand wash gently with cold water and mild detergent. Avoid harsh chemicals or bleach.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="care-item" style="display: flex; align-items: flex-start; gap: 12px;">
+                        <i class="fas fa-sun" style="color: var(--accent-color); font-size: 20px; margin-top: 4px;"></i>
+                        <div>
+                            <h4 style="margin-bottom: 8px;">Drying</h4>
+                            <p style="font-size: 14px; margin: 0;">Air dry in shade. Avoid direct sunlight to preserve colors and fabric quality.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="care-item" style="display: flex; align-items: flex-start; gap: 12px;">
+                        <i class="fas fa-fire" style="color: var(--warm-orange); font-size: 20px; margin-top: 4px;"></i>
+                        <div>
+                            <h4 style="margin-bottom: 8px;">Ironing</h4>
+                            <p style="font-size: 14px; margin: 0;">Iron on medium heat. Use a cloth between iron and fabric to protect prints.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="care-item" style="display: flex; align-items: flex-start; gap: 12px;">
+                        <i class="fas fa-archive" style="color: var(--secondary-color); font-size: 20px; margin-top: 4px;"></i>
+                        <div>
+                            <h4 style="margin-bottom: 8px;">Storage</h4>
+                            <p style="font-size: 14px; margin: 0;">Store in a cool, dry place. Fold carefully or hang to prevent wrinkles.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Reviews Tab -->
+            <div class="tab-pane" id="reviews" style="background-color: white; padding: 32px; border-radius: 12px; box-shadow: var(--shadow-sm); display: none;">
+                <div class="reviews-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px;">
+                    <h3>Customer Reviews</h3>
+                    <button class="btn btn-primary">Write a Review</button>
+                </div>
+                
+                <!-- Review Summary -->
+                <div class="review-summary" style="display: grid; grid-template-columns: 200px 1fr; gap: 32px; margin-bottom: 32px; padding: 24px; background-color: var(--bg-light); border-radius: 12px;">
+                    <div class="rating-overview" style="text-align: center;">
+                        <div style="font-size: 3rem; font-weight: 700; color: var(--primary-color); margin-bottom: 8px;">4.8</div>
+                        <div class="stars" style="margin-bottom: 8px;">
+                            <i class="fas fa-star star"></i>
+                            <i class="fas fa-star star"></i>
+                            <i class="fas fa-star star"></i>
+                            <i class="fas fa-star star"></i>
+                            <i class="fas fa-star star"></i>
+                        </div>
+                        <div style="color: var(--text-light); font-size: 14px;">Based on 24 reviews</div>
+                    </div>
+                    
+                    <div class="rating-breakdown">
+                        <!-- Individual rating bars would go here -->
+                        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
+                            <span style="font-size: 14px; min-width: 20px;">5★</span>
+                            <div style="flex: 1; height: 8px; background-color: var(--border-color); border-radius: 4px; overflow: hidden;">
+                                <div style="width: 75%; height: 100%; background-color: var(--primary-color);"></div>
+                            </div>
+                            <span style="font-size: 14px; color: var(--text-light);">18</span>
+                        </div>
+                        <!-- More rating bars... -->
+                    </div>
+                </div>
+                
+                <!-- Individual Reviews -->
+                <div class="reviews-list">
+                    <!-- Sample Review -->
+                    <div class="review-item" style="padding: 24px; border: 1px solid var(--border-color); border-radius: 12px; margin-bottom: 16px;">
+                        <div class="review-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                            <div>
+                                <div style="font-weight: 600; margin-bottom: 4px;">Priya Sharma</div>
+                                <div class="stars" style="margin-bottom: 4px;">
+                                    <i class="fas fa-star star"></i>
+                                    <i class="fas fa-star star"></i>
+                                    <i class="fas fa-star star"></i>
+                                    <i class="fas fa-star star"></i>
+                                    <i class="fas fa-star star"></i>
+                                </div>
+                            </div>
+                            <div style="color: var(--text-light); font-size: 14px;">2 days ago</div>
+                        </div>
+                        <p style="margin: 0;">Beautiful scarf with amazing quality! The colors are vibrant and the fabric feels premium. You can really tell it's handmade with care. Highly recommend!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Related Products -->
+<section class="related-products" style="padding: var(--section-padding); background-color: white;">
+    <div class="container">
+        <div class="section-header">
+            <h2>You May Also Like</h2>
+            <p>More authentic handcrafted products from our collection</p>
+        </div>
+        
+        <div class="products-grid" style="grid-template-columns: repeat(4, 1fr);">
+            <!-- Related products would be dynamically loaded here -->
+            <!-- For now, showing static examples -->
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Product page specific JavaScript
+    document.addEventListener('DOMContentLoaded', function() {
+        // Color option selection
+        document.querySelectorAll('.color-option').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.color-option').forEach(b => {
+                    b.classList.remove('active');
+                    b.style.borderColor = 'var(--border-color)';
+                });
+                this.classList.add('active');
+                this.style.borderColor = 'var(--primary-color)';
+                document.getElementById('selectedColor').textContent = this.dataset.color;
+            });
+        });
+        
+        // Size option selection
+        document.querySelectorAll('.size-option').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.size-option').forEach(b => {
+                    b.classList.remove('active');
+                    b.style.background = 'white';
+                    b.style.color = 'var(--text-dark)';
+                    b.style.borderColor = 'var(--border-color)';
+                });
+                this.classList.add('active');
+                this.style.background = 'var(--primary-color)';
+                this.style.color = 'white';
+                this.style.borderColor = 'var(--primary-color)';
+            });
+        });
+        
+        // Tab navigation
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const targetTab = this.dataset.tab;
+                
+                // Update active tab button
+                document.querySelectorAll('.tab-btn').forEach(b => {
+                    b.classList.remove('active');
+                    b.style.background = 'none';
+                    b.style.color = 'var(--text-dark)';
+                });
+                this.classList.add('active');
+                this.style.background = 'var(--primary-color)';
+                this.style.color = 'white';
+                
+                // Show target tab content
+                document.querySelectorAll('.tab-pane').forEach(pane => {
+                    pane.style.display = 'none';
+                    pane.classList.remove('active');
+                });
+                const targetPane = document.getElementById(targetTab);
+                targetPane.style.display = 'block';
+                targetPane.classList.add('active');
+            });
+        });
+    });
+</script>
+{% endblock %}

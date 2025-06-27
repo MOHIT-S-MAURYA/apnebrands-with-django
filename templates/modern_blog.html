@@ -1,0 +1,700 @@
+{% extends "modern_base.html" %}
+{% load static %}
+
+{% block title %}Blog - apneBrands{% endblock %}
+
+{% block extra_css %}
+<style>
+    .blog-hero {
+        background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+        padding: 6rem 0 4rem 0;
+        color: white;
+        text-align: center;
+    }
+
+    .blog-hero h1 {
+        font-size: 3rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+    }
+
+    .blog-hero p {
+        font-size: 1.2rem;
+        opacity: 0.9;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .blog-section {
+        padding: 5rem 0;
+    }
+
+    .blog-filters {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 3rem;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    .filter-btn {
+        padding: 0.75rem 1.5rem;
+        border: 2px solid #e5e7eb;
+        background: white;
+        color: var(--text-light);
+        border-radius: 25px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        font-weight: 500;
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+        background: var(--primary-color);
+        color: white;
+        border-color: var(--primary-color);
+        transform: translateY(-2px);
+    }
+
+    .blog-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 2rem;
+        margin-bottom: 3rem;
+    }
+
+    .blog-card {
+        background: white;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .blog-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    }
+
+    .blog-image {
+        height: 250px;
+        background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+        position: relative;
+        overflow: hidden;
+    }
+
+    .blog-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+    }
+
+    .blog-card:hover .blog-image img {
+        transform: scale(1.05);
+    }
+
+    .blog-category {
+        position: absolute;
+        top: 1rem;
+        left: 1rem;
+        background: rgba(255, 255, 255, 0.9);
+        color: var(--primary-color);
+        padding: 0.25rem 0.75rem;
+        border-radius: 15px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .blog-content {
+        padding: 2rem;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .blog-meta {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1rem;
+        color: var(--text-light);
+        font-size: 0.9rem;
+    }
+
+    .blog-date {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+    }
+
+    .blog-author {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+    }
+
+    .blog-title {
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: var(--text-dark);
+        margin-bottom: 1rem;
+        line-height: 1.3;
+    }
+
+    .blog-title a {
+        color: inherit;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    .blog-title a:hover {
+        color: var(--primary-color);
+    }
+
+    .blog-excerpt {
+        color: var(--text-light);
+        line-height: 1.6;
+        margin-bottom: 1.5rem;
+        flex: 1;
+    }
+
+    .blog-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 1rem;
+        border-top: 1px solid #e5e7eb;
+    }
+
+    .read-more {
+        color: var(--primary-color);
+        text-decoration: none;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: all 0.3s ease;
+    }
+
+    .read-more:hover {
+        gap: 0.75rem;
+    }
+
+    .blog-tags {
+        display: flex;
+        gap: 0.5rem;
+    }
+
+    .tag {
+        background: var(--light-bg);
+        color: var(--text-light);
+        padding: 0.25rem 0.5rem;
+        border-radius: 10px;
+        font-size: 0.75rem;
+        text-decoration: none;
+        transition: all 0.3s ease;
+    }
+
+    .tag:hover {
+        background: var(--primary-color);
+        color: white;
+    }
+
+    .pagination {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.5rem;
+        margin-top: 3rem;
+    }
+
+    .pagination a,
+    .pagination span {
+        padding: 0.75rem 1rem;
+        border: 2px solid #e5e7eb;
+        color: var(--text-light);
+        text-decoration: none;
+        border-radius: 10px;
+        transition: all 0.3s ease;
+        min-width: 45px;
+        text-align: center;
+    }
+
+    .pagination a:hover,
+    .pagination .current {
+        background: var(--primary-color);
+        color: white;
+        border-color: var(--primary-color);
+    }
+
+    .featured-post {
+        grid-column: 1 / -1;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0;
+        margin-bottom: 2rem;
+    }
+
+    .featured-post .blog-image {
+        height: 400px;
+    }
+
+    .featured-post .blog-content {
+        padding: 3rem;
+        justify-content: center;
+    }
+
+    .featured-post .blog-title {
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .featured-post .blog-excerpt {
+        font-size: 1.1rem;
+        margin-bottom: 2rem;
+    }
+
+    .newsletter-section {
+        background: var(--light-bg);
+        padding: 4rem 0;
+        margin-top: 3rem;
+    }
+
+    .newsletter-card {
+        background: white;
+        border-radius: 20px;
+        padding: 3rem;
+        text-align: center;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .newsletter-form {
+        display: flex;
+        gap: 1rem;
+        margin-top: 2rem;
+    }
+
+    .newsletter-input {
+        flex: 1;
+        padding: 0.875rem 1rem;
+        border: 2px solid #e5e7eb;
+        border-radius: 10px;
+        font-size: 1rem;
+    }
+
+    .newsletter-input:focus {
+        outline: none;
+        border-color: var(--primary-color);
+    }
+
+    @media (max-width: 768px) {
+        .blog-hero h1 {
+            font-size: 2rem;
+        }
+
+        .blog-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .featured-post {
+            grid-template-columns: 1fr;
+        }
+
+        .featured-post .blog-image {
+            height: 250px;
+        }
+
+        .featured-post .blog-content {
+            padding: 2rem;
+        }
+
+        .featured-post .blog-title {
+            font-size: 1.5rem;
+        }
+
+        .blog-filters {
+            justify-content: flex-start;
+            overflow-x: auto;
+            padding-bottom: 1rem;
+        }
+
+        .newsletter-form {
+            flex-direction: column;
+        }
+
+        .newsletter-card {
+            padding: 2rem;
+            margin: 0 1rem;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- Blog Hero Section -->
+<section class="blog-hero">
+    <div class="container">
+        <h1>Stories & Insights</h1>
+        <p>Discover the rich heritage, traditional crafts, and inspiring stories behind our indigenous artisan community.</p>
+    </div>
+</section>
+
+<!-- Blog Section -->
+<section class="blog-section">
+    <div class="container">
+        <!-- Blog Filters -->
+        <div class="blog-filters">
+            <a href="#" class="filter-btn active">All Posts</a>
+            <a href="#" class="filter-btn">Artisan Stories</a>
+            <a href="#" class="filter-btn">Traditional Crafts</a>
+            <a href="#" class="filter-btn">Cultural Heritage</a>
+            <a href="#" class="filter-btn">Sustainability</a>
+            <a href="#" class="filter-btn">Community</a>
+        </div>
+
+        <!-- Blog Grid -->
+        <div class="blog-grid">
+            <!-- Featured Post -->
+            <article class="blog-card featured-post">
+                <div class="blog-image">
+                    <img src="{% static 'images/blog/featured-artisan.jpg' %}" alt="Featured artisan at work" onerror="this.style.display='none'">
+                    <div class="blog-category">Featured</div>
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span class="blog-date">
+                            <i class="fas fa-calendar-alt"></i>
+                            December 15, 2023
+                        </span>
+                        <span class="blog-author">
+                            <i class="fas fa-user"></i>
+                            Sarah Johnson
+                        </span>
+                    </div>
+                    <h2 class="blog-title">
+                        <a href="#">The Art of Traditional Pottery: Preserving Ancient Techniques</a>
+                    </h2>
+                    <p class="blog-excerpt">
+                        Explore the intricate world of traditional pottery-making as we follow master artisan Maria Gonzalez through her creative process. Learn how ancient techniques are being preserved and passed down through generations in this fascinating journey into indigenous craftsmanship.
+                    </p>
+                    <div class="blog-footer">
+                        <a href="#" class="read-more">
+                            Read Full Story
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                        <div class="blog-tags">
+                            <a href="#" class="tag">Pottery</a>
+                            <a href="#" class="tag">Tradition</a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Regular Blog Posts -->
+            <article class="blog-card">
+                <div class="blog-image">
+                    <img src="{% static 'images/blog/weaving-tradition.jpg' %}" alt="Traditional weaving" onerror="this.style.display='none'">
+                    <div class="blog-category">Crafts</div>
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span class="blog-date">
+                            <i class="fas fa-calendar-alt"></i>
+                            December 10, 2023
+                        </span>
+                        <span class="blog-author">
+                            <i class="fas fa-user"></i>
+                            Michael Chen
+                        </span>
+                    </div>
+                    <h3 class="blog-title">
+                        <a href="#">Threads of Heritage: The Story of Traditional Weaving</a>
+                    </h3>
+                    <p class="blog-excerpt">
+                        Discover the intricate patterns and symbolic meanings behind traditional textile weaving. Each thread tells a story of cultural identity and ancestral wisdom.
+                    </p>
+                    <div class="blog-footer">
+                        <a href="#" class="read-more">
+                            Read More
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                        <div class="blog-tags">
+                            <a href="#" class="tag">Weaving</a>
+                            <a href="#" class="tag">Heritage</a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="blog-card">
+                <div class="blog-image">
+                    <img src="{% static 'images/blog/sustainable-crafts.jpg' %}" alt="Sustainable crafting" onerror="this.style.display='none'">
+                    <div class="blog-category">Sustainability</div>
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span class="blog-date">
+                            <i class="fas fa-calendar-alt"></i>
+                            December 8, 2023
+                        </span>
+                        <span class="blog-author">
+                            <i class="fas fa-user"></i>
+                            Emily Rodriguez
+                        </span>
+                    </div>
+                    <h3 class="blog-title">
+                        <a href="#">Eco-Friendly Crafts: Sustainability in Traditional Art</a>
+                    </h3>
+                    <p class="blog-excerpt">
+                        Learn how indigenous communities have been practicing sustainable crafting for centuries, using natural materials and eco-friendly techniques.
+                    </p>
+                    <div class="blog-footer">
+                        <a href="#" class="read-more">
+                            Read More
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                        <div class="blog-tags">
+                            <a href="#" class="tag">Eco-Friendly</a>
+                            <a href="#" class="tag">Traditional</a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="blog-card">
+                <div class="blog-image">
+                    <img src="{% static 'images/blog/artisan-community.jpg' %}" alt="Artisan community" onerror="this.style.display='none'">
+                    <div class="blog-category">Community</div>
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span class="blog-date">
+                            <i class="fas fa-calendar-alt"></i>
+                            December 5, 2023
+                        </span>
+                        <span class="blog-author">
+                            <i class="fas fa-user"></i>
+                            David Kim
+                        </span>
+                    </div>
+                    <h3 class="blog-title">
+                        <a href="#">Building Bridges: Connecting Artisans to Global Markets</a>
+                    </h3>
+                    <p class="blog-excerpt">
+                        Explore how technology and fair trade practices are helping indigenous artisans reach customers worldwide while preserving their cultural heritage.
+                    </p>
+                    <div class="blog-footer">
+                        <a href="#" class="read-more">
+                            Read More
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                        <div class="blog-tags">
+                            <a href="#" class="tag">Fair Trade</a>
+                            <a href="#" class="tag">Global</a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="blog-card">
+                <div class="blog-image">
+                    <img src="{% static 'images/blog/cultural-symbols.jpg' %}" alt="Cultural symbols" onerror="this.style.display='none'">
+                    <div class="blog-category">Heritage</div>
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span class="blog-date">
+                            <i class="fas fa-calendar-alt"></i>
+                            December 3, 2023
+                        </span>
+                        <span class="blog-author">
+                            <i class="fas fa-user"></i>
+                            Ana Martinez
+                        </span>
+                    </div>
+                    <h3 class="blog-title">
+                        <a href="#">Sacred Symbols: Understanding Indigenous Art Meanings</a>
+                    </h3>
+                    <p class="blog-excerpt">
+                        Dive deep into the spiritual and cultural significance of symbols commonly found in indigenous art and crafts from around the world.
+                    </p>
+                    <div class="blog-footer">
+                        <a href="#" class="read-more">
+                            Read More
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                        <div class="blog-tags">
+                            <a href="#" class="tag">Symbols</a>
+                            <a href="#" class="tag">Spiritual</a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="blog-card">
+                <div class="blog-image">
+                    <img src="{% static 'images/blog/young-artisans.jpg' %}" alt="Young artisans learning" onerror="this.style.display='none'">
+                    <div class="blog-category">Education</div>
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span class="blog-date">
+                            <i class="fas fa-calendar-alt"></i>
+                            December 1, 2023
+                        </span>
+                        <span class="blog-author">
+                            <i class="fas fa-user"></i>
+                            Lisa Thompson
+                        </span>
+                    </div>
+                    <h3 class="blog-title">
+                        <a href="#">Next Generation Artisans: Teaching Traditional Skills</a>
+                    </h3>
+                    <p class="blog-excerpt">
+                        Meet the young artisans who are learning traditional crafting techniques and discover how ancient skills are being passed to future generations.
+                    </p>
+                    <div class="blog-footer">
+                        <a href="#" class="read-more">
+                            Read More
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                        <div class="blog-tags">
+                            <a href="#" class="tag">Education</a>
+                            <a href="#" class="tag">Youth</a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+
+        <!-- Pagination -->
+        <div class="pagination">
+            <a href="#" class="prev-page">
+                <i class="fas fa-chevron-left"></i>
+            </a>
+            <span class="current">1</span>
+            <a href="#">2</a>
+            <a href="#">3</a>
+            <span>...</span>
+            <a href="#">10</a>
+            <a href="#" class="next-page">
+                <i class="fas fa-chevron-right"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Newsletter Section -->
+<section class="newsletter-section">
+    <div class="container">
+        <div class="newsletter-card">
+            <h2>Stay Updated</h2>
+            <p>Subscribe to our newsletter to get the latest stories, artisan spotlights, and cultural insights delivered to your inbox.</p>
+            
+            <form class="newsletter-form">
+                <input type="email" 
+                       class="newsletter-input" 
+                       placeholder="Enter your email address"
+                       required>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-paper-plane me-2"></i>
+                    Subscribe
+                </button>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Filter functionality
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const blogCards = document.querySelectorAll('.blog-card:not(.featured-post)');
+    
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Update active filter
+            filterBtns.forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            
+            const filter = this.textContent.trim();
+            
+            // Simple filter simulation (in real app, this would filter based on actual data)
+            blogCards.forEach(card => {
+                if (filter === 'All Posts') {
+                    card.style.display = 'block';
+                } else {
+                    // Hide all cards for demo, in real app you'd filter by category
+                    const category = card.querySelector('.blog-category').textContent;
+                    if (category.toLowerCase().includes(filter.toLowerCase()) || 
+                        filter === 'All Posts') {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                }
+            });
+        });
+    });
+    
+    // Newsletter form submission
+    const newsletterForm = document.querySelector('.newsletter-form');
+    if (newsletterForm) {
+        newsletterForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.querySelector('.newsletter-input').value;
+            
+            if (email) {
+                // Show success message
+                const btn = this.querySelector('button');
+                const originalText = btn.innerHTML;
+                btn.innerHTML = '<i class="fas fa-check me-2"></i>Subscribed!';
+                btn.style.background = '#10b981';
+                
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                    btn.style.background = '';
+                    this.querySelector('.newsletter-input').value = '';
+                }, 2000);
+            }
+        });
+    }
+    
+    // Smooth scroll for pagination
+    document.querySelectorAll('.pagination a').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    });
+    
+    // Read more animations
+    document.querySelectorAll('.read-more').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            // In a real app, this would navigate to the full post
+            this.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Loading...';
+            
+            setTimeout(() => {
+                this.innerHTML = 'Read More <i class="fas fa-arrow-right"></i>';
+            }, 1000);
+        });
+    });
+});
+</script>
+{% endblock %}

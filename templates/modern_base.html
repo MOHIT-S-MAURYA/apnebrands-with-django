@@ -1,0 +1,171 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{% block meta_description %}Discover authentic indigenous products and traditional crafts at ApneBrands - Supporting local artisans and preserving cultural heritage{% endblock %}">
+    <meta name="keywords" content="{% block meta_keywords %}indigenous products, traditional crafts, handmade, artisan, cultural heritage, authentic{% endblock %}">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}">
+    
+    <!-- Fonts and Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="{% static 'css/modern-style.css' %}">
+    {% block extra_css %}{% endblock %}
+    
+    <title>{% block title %}ApneBrands{% endblock %} | Authentic Indigenous Products</title>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="container">
+            <nav class="navbar">
+                <!-- Logo -->
+                <a href="{% url 'index' %}" class="logo">
+                    Apne<span>Brands</span>
+                </a>
+                
+                <!-- Search Bar -->
+                <div class="search-container">
+                    <input type="text" placeholder="Search for authentic products..." id="searchInput">
+                    <button type="button" id="searchBtn">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+                
+                <!-- Navigation Links -->
+                <ul class="nav-links">
+                    <li><a href="{% url 'index' %}" class="{% if request.resolver_match.url_name == 'index' %}active{% endif %}">Home</a></li>
+                    <li><a href="{% url 'shop' %}" class="{% if request.resolver_match.url_name == 'shop' %}active{% endif %}">Shop</a></li>
+                    <li><a href="{% url 'blog' %}" class="{% if request.resolver_match.url_name == 'blog' %}active{% endif %}">Stories</a></li>
+                    <li><a href="{% url 'contact' %}" class="{% if request.resolver_match.url_name == 'contact' %}active{% endif %}">Contact</a></li>
+                </ul>
+                
+                <!-- Header Actions -->
+                <div class="header-actions">
+                    {% if user.is_authenticated %}
+                        <a href="#" class="wishlist-icon" title="Wishlist">
+                            <i class="far fa-heart"></i>
+                            <span class="cart-badge">0</span>
+                        </a>
+                        <a href="{% url 'cart' %}" class="cart-icon" title="Shopping Cart">
+                            <i class="fas fa-shopping-bag"></i>
+                            <span class="cart-badge">0</span>
+                        </a>
+                        <div class="user-dropdown">
+                            <a href="#" class="user-icon" title="Account">
+                                <i class="far fa-user"></i>
+                            </a>
+                            <div class="dropdown-menu">
+                                <a href="#" class="dropdown-item">My Profile</a>
+                                <a href="#" class="dropdown-item">My Orders</a>
+                                <a href="{% url 'logoutuser' %}" class="dropdown-item">Logout</a>
+                            </div>
+                        </div>
+                    {% else %}
+                        <a href="{% url 'loginuser' %}" class="btn btn-outline btn-small">Login</a>
+                        <a href="{% url 'signupuser' %}" class="btn btn-primary btn-small">Sign Up</a>
+                    {% endif %}
+                </div>
+                
+                <!-- Mobile Menu Toggle -->
+                <div class="mobile-menu-toggle" id="mobileMenuToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        {% if messages %}
+            <div class="messages-container">
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}">
+                        <i class="fas fa-{% if message.tags == 'success' %}check-circle{% elif message.tags == 'error' %}exclamation-circle{% elif message.tags == 'warning' %}exclamation-triangle{% else %}info-circle{% endif %}"></i>
+                        {{ message }}
+                        <button type="button" class="alert-close">&times;</button>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+        
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <!-- Company Info -->
+                <div class="footer-section">
+                    <a href="{% url 'index' %}" class="logo" style="color: white; font-size: 24px;">
+                        Apne<span style="color: var(--primary-color);">Brands</span>
+                    </a>
+                    <p>Celebrating and preserving indigenous culture through authentic handcrafted products. Supporting local artisans and their traditional craft.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link" title="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="social-link" title="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="social-link" title="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-link" title="YouTube">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <a href="{% url 'index' %}">Home</a>
+                    <a href="{% url 'shop' %}">Shop All Products</a>
+                    <a href="#" rel="nofollow">Our Artisans</a>
+                    <a href="#" rel="nofollow">Cultural Heritage</a>
+                    <a href="{% url 'blog' %}">Stories & Blog</a>
+                    <a href="#" rel="nofollow">Wholesale</a>
+                </div>
+                
+                <!-- Customer Service -->
+                <div class="footer-section">
+                    <h4>Customer Care</h4>
+                    <a href="{% url 'contact' %}">Contact Us</a>
+                    <a href="#" rel="nofollow">Shipping Information</a>
+                    <a href="#" rel="nofollow">Returns & Exchanges</a>
+                    <a href="#" rel="nofollow">Size Guide</a>
+                    <a href="#" rel="nofollow">Care Instructions</a>
+                    <a href="#" rel="nofollow">FAQ</a>
+                </div>
+                
+                <!-- Contact Info -->
+                <div class="footer-section">
+                    <h4>Get In Touch</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> Shiv Colony, Jalgaon<br>Maharashtra, India</p>
+                    <p><i class="fas fa-phone"></i> +91 8080491934</p>
+                    <p><i class="fas fa-envelope"></i> hello@apnebrands.com</p>
+                    <p><i class="fas fa-clock"></i> Mon-Sat: 9:00 AM - 6:00 PM</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 ApneBrands. All rights reserved. Made with ❤️ for indigenous communities.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="{% static 'js/modern-script.js' %}"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>
